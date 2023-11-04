@@ -8,7 +8,7 @@ interface Props {
 
 const AddItem: React.FC<Props> = ({name, price, onClickMenu}) => {
   return (
-    <button className="card mb-3 btn btn-success"  style={{ width: "150px" }} onClick={onClickMenu}>
+    <button className="btn btn-success text-start"  style={{ width: "150px" }} onClick={onClickMenu}>
       <strong className="d-block">{name}</strong>
       Price: {price} KGS
     </button>

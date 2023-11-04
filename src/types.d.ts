@@ -2,5 +2,9 @@ export  interface Character {
   name: string;
   count: number;
   price: number;
-  order: number;
+}
+
+export interface MenuItem {
+    name: string;
+    price: number;
 }
