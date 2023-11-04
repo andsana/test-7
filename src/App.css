@@ -1,2 +1,11 @@
 
+.app {
+  display: flex;
+}
+
+.add-items {
+  flex-wrap: wrap;
+  width: 800px;
+  gap: 20px;
+}
 
