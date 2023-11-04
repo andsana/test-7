@@ -1,8 +1,10 @@
 import {useState} from 'react';
 import AddItem from './Components/AddItem/AddItem';
+import Order from './Components/Order/Order';
 import {MenuItems} from './Constant/MenuItems';
 import './App.css';
 import type {Character} from './types';
+
 
 function App() {
 
@@ -40,12 +42,13 @@ function App() {
 
   if (orders.length) {
     orderList = orders.map((order, index) => (
-      <div key={index}>
-        <span>{order.name}</span>
-        <span>X {order.count}</span>
-        <span>{order.price * order.count} KGS</span>
-        <button onClick={() => removeOrder(index)}>Remove</button>
-      </div>
+      <Order
+        key={index}
+        name={order.name}
+        count={order.count}
+        price={order.price}
+        removeOrder={() => removeOrder(index)}
+      />
     ));
   } else {
     orderList = 'Order is empty! Please add some items';
