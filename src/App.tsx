@@ -1,7 +1,7 @@
 import {useState} from 'react';
+import AddItems from './Components/AddItem/AddItems';
+import Orders from './Components/Order/Orders';
 import {MenuItems} from './Constant/MenuItems';
-import Order from './Components/Order/Order';
-import AddItems from "./Components/AddItem/AddItems";
 import type {Character} from './types';
 import './App.css';
 
@@ -35,36 +35,24 @@ function App() {
     }));
   };
 
-  let orderList;
-
-  if (orders.length) {
-    orderList = orders.map((order, index) => (
-      <Order
-        key={index}
-        name={order.name}
-        count={order.count}
-        price={order.price}
-        removeOrder={() => removeOrder(index)}
-      />
-    ));
-  } else {
-    orderList = 'Order is empty! Please add some items';
-  }
-
   const CalculateTotalPrice = () => {
-    return  orders.length
+    return orders.length
       ? orders.reduce((acc, order) => acc + order.count * order.price, 0)
       : 0;
   };
+
+  const ordersList = orders.length > 0
+    ? (<Orders orders={orders} removeOrder={removeOrder}/>)
+    : (<p>Order is empty! Please add some items</p>);
 
   return (
     <div className="app col-5 gap-5">
       <div className="col-left col-6 d-flex flex-column">
         <h4 className="mb-3 text-center">Order Details:</h4>
-        {orderList}
+        {ordersList}
         <p className="mt-3 mt-auto">Total prise: <strong>{CalculateTotalPrice()}</strong></p>
       </div>
-        <AddItems MenuItems={MenuItems} addOrder={addOrder}/>
+      <AddItems MenuItems={MenuItems} addOrder={addOrder}/>
     </div>
   );
 }

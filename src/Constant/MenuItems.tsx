@@ -1,4 +1,4 @@
-import {MenuItem} from "../types";
+import {MenuItem} from '../types';
 export const MenuItems: MenuItem[] = [
   {name: 'Hamburger', price: 80},
   {name: 'Cheeseburger', price: 90},
