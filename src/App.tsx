@@ -5,7 +5,6 @@ import {MenuItems} from './Constant/MenuItems';
 import './App.css';
 import type {Character} from './types';
 
-
 function App() {
 
   const [orders, setOrders] = useState<Character[]>([]);
@@ -13,6 +12,7 @@ function App() {
   const addOrder = (index: number) => {
     const selectedItem = MenuItems[index];
     const orderExists = orders.find(order => order.name === selectedItem.name);
+
     if (orderExists) {
       setOrders(prevState =>
         prevState.map(order =>
@@ -27,9 +27,11 @@ function App() {
 
   const removeOrder = (index: number) => {
     setOrders((prevState) => prevState.map((order, i) => {
+
       if (i === index) {
         return {...order, count: order.count ? order.count - 1 : 0};
       }
+
       return order;
     }));
   };
@@ -54,15 +56,23 @@ function App() {
     orderList = 'Order is empty! Please add some items';
   }
 
+  const CalculateTotalPrice = () => {
+    const totalPrice = orders.length
+      ? orders.reduce((acc, order) => acc + order.count * order.price, 0)
+      : 0;
+    return totalPrice;
+  };
+
   return (
     <div className="app col-6">
       <div className="col-left col-6">
-        <h4>Order Details:</h4>
+        <h4 className="mb-3">Order Details:</h4>
         {orderList}
+        <p className="mt-3">Total prise: <strong>{CalculateTotalPrice()}</strong></p>
       </div>
 
       <div className="col-right col-6">
-        <h4>Add items:</h4>
+        <h4 className="mb-3">Add items:</h4>
         <div className="add-items d-flex col-12">
           {menuItemsList}
         </div>

@@ -9,11 +9,11 @@ interface Props {
 
 const Order: React.FC<Props> = ({ name, count, price, removeOrder }) => {
   return (
-    <div>
+    <div className="d-flex gap-2 mb-3 align-items-center">
       <span>{name}</span>
       <span>X {count}</span>
       <span>{price * count} KGS</span>
-      <button onClick={removeOrder}>Remove</button>
+      <button className="btn btn-danger" onClick={removeOrder}>Remove</button>
     </div>
   );
 };
